@@ -430,7 +430,9 @@ namespace Npgsql.EntityFramework7.FunctionalTests
         {
             // TODO: Clean all this up, unify with NpgsqlTests.TestBase somehow
             // Temporary hack to get tests running on the build server
-            var csb = new NpgsqlConnectionStringBuilder(Environment.GetEnvironmentVariable("NPGSQL_TEST_DB_9.4") ?? DefaultConnectionString);
+            var csb = new NpgsqlConnectionStringBuilder(Environment.GetEnvironmentVariable("NPGSQL_TEST_DB_9.4")
+	    	?? Environment.GetEnvironmentVariable("DATABASE")
+		?? DefaultConnectionString);
             csb.Database = name;
             return csb.ConnectionString;
         }
